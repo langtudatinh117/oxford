@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 import re
 
 ################################
-client = MongoClient("ds137759.mlab.com", 37759)
-db = client['huplib']
+client = MongoClient("ds155509.mlab.com", 55509)
+db = client['huplib2']
 db.authenticate('daoan', '0903293343')
 oxford = db['oxford']
 pending = db['pending']
