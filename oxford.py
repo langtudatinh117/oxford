@@ -1,4 +1,3 @@
-from __future__ import print_function
 from pymongo import MongoClient
 import urllib3
 from bs4 import BeautifulSoup
