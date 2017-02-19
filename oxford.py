@@ -43,21 +43,25 @@ def linkToQuery(link):
 
 
 def getWord(soup):
-    return soup.find('h2', class_='h').get_text()
+    try:
+        w_ = soup.find('h2', class_='h').get_text()
+    except:
+        return None
+    return w_
 
 
 while True:
     _Soup = getSoup(URL)
-    if _Soup is None:
+    Word = getWord(_Soup)
+    if Word is None:
         pending.update({'query': query}, {'$set': {'status': 'ok'}})
         doc_q = pending.find_one({'status': 'pending'})
         if doc_q is not None:
             query = doc_q['query']
             URL = 'http://www.oxfordlearnersdictionaries.com/definition/english/' + query
+            continue
         else:
             break
-        continue
-    Word = getWord(_Soup)
     lst_query = linkToQuery(getLink(_Soup))
 
     pending.update({'query': query}, {'$set': {'status': 'ok'}})
