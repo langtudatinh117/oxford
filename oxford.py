@@ -49,6 +49,7 @@ def getWord(soup):
 while True:
     _Soup = getSoup(URL)
     if _Soup is None:
+        pending.update({'query': query}, {'$set': {'status': 'ok'}})
         continue
     Word = getWord(_Soup)
     lst_query = linkToQuery(getLink(_Soup))
