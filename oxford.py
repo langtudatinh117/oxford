@@ -47,9 +47,9 @@ def getWord(soup):
 
 
 while True:
-    Soup = getSoup(URL)
-    Word = getWord(Soup)
-    lst_query = linkToQuery(getLink(Soup))
+    _Soup = getSoup(URL)
+    Word = getWord(_Soup)
+    lst_query = linkToQuery(getLink(_Soup))
 
     pending.update({'query': query}, {'$set': {'status': 'ok'}})
     lst_query.remove(query)
