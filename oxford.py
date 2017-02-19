@@ -50,6 +50,12 @@ while True:
     _Soup = getSoup(URL)
     if _Soup is None:
         pending.update({'query': query}, {'$set': {'status': 'ok'}})
+        doc_q = pending.find_one({'status': 'pending'})
+        if doc_q is not None:
+            query = doc_q['query']
+            URL = 'http://www.oxfordlearnersdictionaries.com/definition/english/' + query
+        else:
+            break
         continue
     Word = getWord(_Soup)
     lst_query = linkToQuery(getLink(_Soup))
