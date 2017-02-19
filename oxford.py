@@ -22,7 +22,7 @@ def getSoup(url):
     except:
         return None
     try:
-        bsObj = BeautifulSoup(r.data, 'html.parser')
+        bsObj = BeautifulSoup(r.data, 'lxml')
     except:
         return None
     return bsObj
@@ -52,7 +52,8 @@ while True:
     lst_query = linkToQuery(getLink(_Soup))
 
     pending.update({'query': query}, {'$set': {'status': 'ok'}})
-    lst_query.remove(query)
+    if query in lst_query:
+        lst_query.remove(query)
 
     for q in lst_query:
         doc = pending.find_one({'query': q})
