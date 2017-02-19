@@ -22,7 +22,7 @@ def getSoup(url):
     except:
         return None
     try:
-        bsObj = BeautifulSoup(r.data, 'lxml')
+        bsObj = BeautifulSoup(r.data, 'html.parser')
     except:
         return None
     return bsObj
